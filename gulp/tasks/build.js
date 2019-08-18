@@ -25,8 +25,6 @@ gulp.task('copyGeneralFiles', ['deleteDistFolder'], function() {
     '!' + settings.themeLocation + 'assets/scripts/**',
     '!' + settings.themeLocation + '*.js',
     '!' + settings.themeLocation + '*.json',
-    '!' + settings.themeLocation + 'gulp',
-    '!' + settings.themeLocation + 'gulp/**',
     '!' + settings.themeLocation + 'style.css'
   ]
 
@@ -36,18 +34,8 @@ gulp.task('copyGeneralFiles', ['deleteDistFolder'], function() {
 
 gulp.task('optimizeImages', ['deleteDistFolder', 'icons'], function() {
   return gulp.src([settings.themeLocation + 'assets/images/**/*', '!'+ settings.themeLocation + 'assets/images/icons', '!'+ settings.themeLocation + 'assets/images/icons/**/*'])
-    .pipe(imagemin([
-      imagemin.gifsicle({interlaced: true}),
-      imagemin.jpegtran({progressive: true}),
-      imagemin.optipng({optimizationLevel: 5}),
-      imagemin.svgo({
-          plugins: [
-              {removeViewBox: true},
-              {cleanupIDs: false}
-          ]
-      })
-    ]))
-    .pipe(gulp.dest('./dist/assets/images'));
+    .pipe(imagemin())
+    .pipe(gulp.dest(settings.themeLocation + 'dist/assets/images'));
 });
 
 gulp.task('minify-css', ['deleteDistFolder', 'styles'], function() {
@@ -62,4 +50,6 @@ gulp.task('uglify-js', ['deleteDistFolder', 'scripts'], function () {
     .pipe(gulp.dest(settings.themeLocation + 'dist/assets/scripts'));
 });
 
-gulp.task('build', ['deleteDistFolder', 'copyGeneralFiles', 'optimizeImages', 'minify-css', 'uglify-js']);
+gulp.task('build', ['deleteDistFolder', 'copyGeneralFiles', 'optimizeImages', 'optimizeImages', 'minify-css', 'uglify-js']);
+
+//
