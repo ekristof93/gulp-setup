@@ -27,7 +27,7 @@
     "gulp-watch": "^4.3.5",
     "handlebars": "^4.0.10",
     "handlebars-loader": "^1.6.0",
-    "jquery": "^2.2.4",
+    "jquery": "^3.5.0",
     "path": "^0.12.7",
     "postcss-hexrgba": "^0.2.0",
     "postcss-import": "^8.1.2",
